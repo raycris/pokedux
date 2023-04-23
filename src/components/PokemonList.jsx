@@ -1,12 +1,18 @@
 import PokemonCard from "./PokemonCard";
+import PropTypes from "prop-types";
 
 import "./PokemonList.css";
 
 const PokemonList = ({ pokemons }) => {
+  PokemonList.propTypes = {
+    pokemons: PropTypes.array,
+  };
+
+  
   return (
     <div className="pokemonList">
       {pokemons.map((pokemon) => {
-        return <PokemonCard />;
+        return <PokemonCard name={pokemon.name} key={pokemon.name} />;
       })}
     </div>
   );
