@@ -4,25 +4,26 @@ import Meta from "antd/es/card/Meta";
 
 import PropTypes from "prop-types";
 
-const PokemonCard = ({ name }) => {
+const PokemonCard = ({ name, image, abilities }) => {
   PokemonCard.propTypes = {
-    name: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    abilities: PropTypes.array.isRequired,
   };
 
   return (
     <Card
       title={name}
-      cover={
-        <img
-          src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
-          alt="Ditto"
-        />
-      }
+      cover={<img src={image} alt={name} />}
       extra={<StarOutlined />}
     >
-      <Meta description="firte, magic" />
+      <Meta description={habilities(abilities)} />
     </Card>
   );
+};
+
+const habilities = (abilities) => {
+  return abilities.map((ability) => ability.ability.name).join(", ");
 };
 
 export default PokemonCard;
