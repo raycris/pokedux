@@ -6,7 +6,10 @@ import { pokemonsReducer } from "./reducers/pokemons.js";
 
 import App from "./App.jsx";
 
-const store = createStore(pokemonsReducer);
+const store = createStore(
+  pokemonsReducer,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
   <React.StrictMode>
