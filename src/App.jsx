@@ -22,10 +22,10 @@ function App() {
 
   useEffect(() => {
     const fetchPokemons = async () => {
-      dispatch(setLoading(true))
+      dispatch(setLoading(true));
       const pokemonsRes = await getPokemon();
       dispatch(getPokemonsWithDetails(pokemonsRes));
-      dispatch(setLoading(false))
+      dispatch(setLoading(false));
     };
 
     fetchPokemons();
