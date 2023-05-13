@@ -1,29 +1,40 @@
-import { StarOutlined } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+
 import { Card } from "antd";
 import Meta from "antd/es/card/Meta";
 
-import PropTypes from "prop-types";
+import StartButton from "./StartButton";
 
-const PokemonCard = ({ name, image, abilities }) => {
+import PropTypes from "prop-types";
+import { setFavorite } from "../actions";
+
+const PokemonCard = ({ name, image, types, id, favorite }) => {
   PokemonCard.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
-    abilities: PropTypes.array.isRequired,
+    types: PropTypes.array.isRequired,
+    id:PropTypes.number,
+    favorite: PropTypes.bool,
   };
 
+  const dispatch = useDispatch();
+
+  const handleFavorite = () => {
+    dispatch(setFavorite({pokemonId: id}));
+  };
   return (
     <Card
       title={name}
       cover={<img src={image} alt={name} />}
-      extra={<StarOutlined />}
+      extra={<StartButton isFavorite={favorite} onClick={handleFavorite} />}
     >
-      <Meta description={habilities(abilities)} />
+      <Meta description={habilities(types)} />
     </Card>
   );
 };
 
-const habilities = (abilities) => {
-  return abilities.map((ability) => ability.ability.name).join(", ");
+const habilities = (types) => {
+  return types.map((ability) => ability.type.name).join(", ");
 };
 
 export default PokemonCard;
