@@ -6,21 +6,22 @@ import Meta from "antd/es/card/Meta";
 import StartButton from "./StartButton";
 
 import PropTypes from "prop-types";
-import { setFavorite } from "../actions";
+
+import { setFavorite } from "../slices/dataSlice";
 
 const PokemonCard = ({ name, image, types, id, favorite }) => {
   PokemonCard.propTypes = {
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     types: PropTypes.array.isRequired,
-    id:PropTypes.number,
+    id: PropTypes.number,
     favorite: PropTypes.bool,
   };
 
   const dispatch = useDispatch();
 
   const handleFavorite = () => {
-    dispatch(setFavorite({pokemonId: id}));
+    dispatch(setFavorite({ pokemonId: id }));
   };
   return (
     <Card
