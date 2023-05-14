@@ -9,7 +9,7 @@ import { Provider } from "react-redux";
 
 import thunk from "redux-thunk";
 
-import { pokemonsReducer } from "./reducers/pokemons.js";
+import rootReducer from "./reducers/rootReducer.js";
 
 import { logger } from "./middlewares/index.js";
 
@@ -19,7 +19,7 @@ const composeAlt = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const composedEnhancers = composeAlt(applyMiddleware(thunk, logger));
 
-const store = createStore(pokemonsReducer, composedEnhancers);
+const store = createStore(rootReducer, composedEnhancers);
 
 ReactDOM.createRoot(document.querySelector("#root")).render(
   <React.StrictMode>
